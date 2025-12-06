@@ -1,0 +1,34 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker Compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "server".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  dashboard_server:
+    container_name: dashboard_server
+    build:
+      context: .
+    environment:
+      PORT: ${PORT}
+      MONGODB_URI: ${MONGODB_URI}
+      JWT_KEY: ${JWT_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - cinephoria_dashboard_network
+    ports:
+      - "3006:3000"
+    volumes:
+      - .:/app
+
+networks:
+  cinephoria_dashboard_network:
+    name: cinephoria_dashboard_network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.26.0.0/16
+          gateway: 172.26.0.1

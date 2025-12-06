@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "tasks": {
+    "start": "deno run --allow-net main.ts",
+    "dev": "deno run --allow-net --allow-read --allow-env --allow-run --watch src/server.ts",
+    "prod": "deno run --allow-net --allow-read --allow-env --allow-run src/server.ts",
+    "test": "deno test"
+  },
+  "imports": {
+    "@types/cors": "npm:@types/cors@^2.8.19",
+    "@types/express": "npm:@types/express@^5.0.6",
+    "@types/passport": "npm:@types/passport@^1.0.17",
+    "@types/passport-jwt": "npm:@types/passport-jwt@^4.0.1",
+    "cors": "npm:cors@^2.8.5",
+    "express": "npm:express@^5.1.0",
+    "mongodb": "npm:mongodb@^7.0.0",
+    "passport": "npm:passport@^0.7.0",
+    "passport-jwt": "npm:passport-jwt@^4.0.1"
+  },
+  "nodeModulesDir": "auto"
+}

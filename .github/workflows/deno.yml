@@ -1,0 +1,58 @@
+name: Test
+
+on:
+  push:
+    branches: ["dev", "features/*", "fixes/*"]
+  pull_request:
+    branches: ["dev"]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v5
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Restore Deno cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/import_map.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-
+
+      - name: Run linter
+        run: deno lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v5
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Restore Deno cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/import_map.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-
+
+      - name: Run tests
+        run: deno test -A
