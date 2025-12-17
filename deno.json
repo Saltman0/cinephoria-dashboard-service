@@ -7,10 +7,13 @@
     "test": "deno test"
   },
   "imports": {
+    "@types/amqplib": "npm:@types/amqplib@^0.10.8",
+    "@types/bson": "npm:@types/bson@^4.2.4",
     "@types/cors": "npm:@types/cors@^2.8.19",
     "@types/express": "npm:@types/express@^5.0.6",
     "@types/passport": "npm:@types/passport@^1.0.17",
     "@types/passport-jwt": "npm:@types/passport-jwt@^4.0.1",
+    "amqplib": "npm:amqplib@^0.10.9",
     "bson": "npm:bson@^7.0.0",
     "cors": "npm:cors@^2.8.5",
     "express": "npm:express@^5.1.0",
