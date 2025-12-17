@@ -10,5 +10,10 @@ router.post(
     passport.authenticate("jwt", { session: false }),
     dashboardController.createBookingHistory
 );
+router.delete(
+    "/dashboard/bookingHistory/:bookingHistoryId",
+    passport.authenticate("jwt", { session: false }),
+    dashboardController.deleteBookingHistory
+);
 
 export default router;

@@ -23,7 +23,19 @@ export async function createBookingHistory(req: Request, res: Response) {
             req.body.date
         );
 
-        res.status(201).json(bookingHistory.insertedId.id);
+        res.status(201).json(bookingHistory.insertedId.toString());
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(500).json({message: error.message});
+        }
+    }
+}
+
+export async function deleteBookingHistory(req: Request, res: Response): Promise<void> {
+    try {
+        await dashboardRepository.deleteBookingHistory(req.params.bookingHistoryId);
+
+        res.status(200).json({ message: "Booking history deleted successfully." });
     } catch (error) {
         if (error instanceof Error) {
             res.status(500).json({message: error.message});
