@@ -1,7 +1,7 @@
 import cors from "cors";
 import express, { Express } from "express";
 import dashboardRoutes from "./routes/dashboard.routes.ts";
-import { subscribeToMessages } from "./rabbitmq";
+import { subscribeToMessages } from "./rabbitmq.ts";
 
 export const port: number = parseInt(process.env.PORT as string) || 3006;
 

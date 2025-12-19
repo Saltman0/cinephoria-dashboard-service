@@ -1,5 +1,5 @@
 import * as amqp from "amqplib";
-import { eventEmitter } from "./events/events";
+import { eventEmitter } from "./events/events.ts";
 
 const url: string = "amqp://"+process.env.RABBITMQ_USER+":"+process.env.RABBITMQ_PASSWORD+"@"+process.env.RABBITMQ_IP;
 
