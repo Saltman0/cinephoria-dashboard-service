@@ -31,6 +31,21 @@ export async function createBookingHistory(req: Request, res: Response) {
     }
 }
 
+export async function updateBookingHistory(req: Request, res: Response) {
+    try {
+        const bookingHistory = await dashboardRepository.updateBookingHistory(
+            req.body.bookingId,
+            req.body.date
+        );
+
+        res.status(200).json(bookingHistory.insertedId.toString());
+    } catch (error) {
+        if (error instanceof Error) {
+            res.status(500).json({message: error.message});
+        }
+    }
+}
+
 export async function deleteBookingHistory(req: Request, res: Response): Promise<void> {
     try {
         await dashboardRepository.deleteBookingHistory(req.params.bookingHistoryId);

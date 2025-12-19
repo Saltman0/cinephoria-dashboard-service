@@ -10,6 +10,11 @@ router.post(
     passport.authenticate("jwt", { session: false }),
     dashboardController.createBookingHistory
 );
+router.put(
+    "/dashboard/bookingHistory/:bookingHistoryId",
+    passport.authenticate("jwt", { session: false }),
+    dashboardController.updateBookingHistory
+);
 router.delete(
     "/dashboard/bookingHistory/:bookingHistoryId",
     passport.authenticate("jwt", { session: false }),

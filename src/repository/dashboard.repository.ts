@@ -56,6 +56,29 @@ export async function insertBookingHistory(bookingId: number, date: string) {
     }
 }
 
+export async function updateBookingHistory(id: string, bookingId: number|null, date: string|null) {
+    const client: MongoClient = new MongoClient(process.env.MONGODB_URI, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
+
+    try {
+        await client.connect();
+
+        return await client.db("dashboard").collection('bookingHistory').updateOne(
+            { _id: new ObjectId(id) },
+            { $set: { bookingId: bookingId, date: new Date(date) } }
+        );
+    } catch (error) {
+        throw error;
+    } finally {
+        client.close();
+    }
+}
+
 export async function deleteBookingHistory(bookingHistoryId: number): Promise<number> {
     const client: MongoClient = new MongoClient(process.env.MONGODB_URI, {
         serverApi: {
