@@ -1,6 +1,6 @@
 import {MongoClient, ServerApiVersion, DeleteResult} from "mongodb";
 import {ObjectId} from "bson";
-import process from "node:process
+import process from "node:process";
 
 export async function findBookingHistory(dateStart: string|null, dateEnd: string|null) {
     const client: MongoClient = new MongoClient(process.env.MONGODB_URI, {
