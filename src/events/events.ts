@@ -9,7 +9,6 @@ eventEmitter.on(
     try {
         const actions: { [key: string]: (message: any) => Promise<void> } = {
             "createBookingHistory": bookingHistoryEvents.createBookingHistoryEvent,
-            "updateBookingHistory": bookingHistoryEvents.updateBookingHistoryEvent,
             "deleteBookingHistory": bookingHistoryEvents.deleteBookingHistoryEvent
         };
 
