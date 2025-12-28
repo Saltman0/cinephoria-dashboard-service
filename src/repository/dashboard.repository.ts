@@ -80,7 +80,7 @@ export async function updateBookingHistory(id: string, bookingId: number|null, d
     }
 }
 
-export async function deleteBookingHistory(bookingHistoryId: number): Promise<number> {
+export async function deleteBookingHistory(bookingHistoryId: string): Promise<number> {
     const client: MongoClient = new MongoClient(process.env.MONGODB_URI, {
         serverApi: {
             version: ServerApiVersion.v1,
@@ -95,6 +95,30 @@ export async function deleteBookingHistory(bookingHistoryId: number): Promise<nu
         const result: DeleteResult = await client.db("dashboard")
             .collection('bookingHistory')
             .deleteOne({ _id: new ObjectId(bookingHistoryId) });
+
+        return result.deletedCount;
+    } catch (error) {
+        throw error;
+    } finally {
+        client.close();
+    }
+}
+
+export async function deleteBookingHistoryByBookingId(bookingId: number): Promise<number> {
+    const client: MongoClient = new MongoClient(process.env.MONGODB_URI, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
+
+    try {
+        await client.connect();
+
+        const result: DeleteResult = await client.db("dashboard")
+            .collection('bookingHistory')
+            .deleteOne({ bookingId: bookingId });
 
         return result.deletedCount;
     } catch (error) {
