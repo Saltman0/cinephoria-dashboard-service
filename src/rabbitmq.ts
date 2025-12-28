@@ -1,5 +1,6 @@
 import * as amqp from "amqplib";
 import { eventEmitter } from "./events/events.ts";
+import {logger} from "./app.ts";
 
 const url: string = "amqp://"+process.env.RABBITMQ_USER+":"+process.env.RABBITMQ_PASSWORD+"@"+process.env.RABBITMQ_IP;
 
@@ -23,6 +24,6 @@ export async function subscribeToMessages(exchange: string): Promise<void> {
             noAck: true
         });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
     }
 }
