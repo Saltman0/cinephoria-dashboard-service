@@ -30,7 +30,7 @@ jobs:
 
       - name: Update Deployment.yaml with new image
         run: |
-          cd CinephoriaK8S/GraphQL
+          cd CinephoriaK8S/DashboardService
           yq -i '.spec.template.spec.containers[0].image = "${{ inputs.image }}:${{ inputs.tag }}"' Deployment.yaml
 
       - name: Commit and push changes
