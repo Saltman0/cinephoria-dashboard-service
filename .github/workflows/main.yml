@@ -7,8 +7,8 @@ on:
     branches: ["main"]
 
 jobs:
-  deno:
-    uses: ./.github/workflows/deno.yml
+  #deno:
+    #uses: ./.github/workflows/deno.yml
 
   tag:
     uses: ./.github/workflows/tag.yml
