@@ -9,7 +9,6 @@ on:
 jobs:
   deno:
     uses: ./.github/workflows/deno.yml
-    continue-on-error: true
 
   tag:
     uses: ./.github/workflows/tag.yml
